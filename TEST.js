@@ -32,11 +32,13 @@
 var canvas = document.getElementById('canvas'),
     context = canvas.getContext('2d'),
     //animateButton = document.getElementById('animateButton'),
-    spritesheet = new Image(),
-    spritesheet2 = new Image(),
-    spritesheet3 = new Image(),
-    spritesheet4 = new Image(),
-    spritesheet5 = new Image(),
+    robo1 = new Image(),
+    robo2 = new Image(),
+    robo3 = new Image(),
+    robo4 = new Image(),
+    robo5 = new Image(),
+    robotsizeX = 150,
+    robotsizey = 300,
     runnerCells = [
       { left: 0,   top: 0, width: 47, height: 64 },
       { left: 55,  top: 0, width: 44, height: 64 },
@@ -50,6 +52,7 @@ var canvas = document.getElementById('canvas'),
     ],
     sprite = new Sprite('runner', new SpriteSheetPainter(runnerCells)),
     interval,
+    ammount,
     lastAdvance = 0,
     paused = false,
     height = window.innerHeight;
@@ -75,7 +78,7 @@ function drawBackground() {
 	   // Set the same to the canvas
      canvas.width = W;
 	   canvas.height = H;
-     ctx.fillStyle = "#00f0f5";// this is the color for the background
+     ctx.fillStyle = "#00f05f";// this is the color for the background
            //ctx.fillstyle ='black'
 	   ctx.fillRect(0,0,W,H);
            ctx.fillStyle = '#fff';
@@ -96,55 +99,101 @@ function startAnimation() {
    window.requestNextAnimationFrame(animate);
 }
 
-// Event handlers................................................
+// Draw................................................
 
-// animateButton.onclick = function (e) {
-//    if (animateButton.value === 'Animate') startAnimation();
-//    else                                   pauseAnimation();
-// };
+function draw(withAnchors, withBorders,degrees) {
+    // Get the canvas element form the page
+    var canvas = document.getElementById("canvas");
+
+    // Make a 2D context
+    var ctx = canvas.getContext("2d");
+    // clear the canvas
+    ammount += 0.1;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    ctx.save();
+
+    ctx.translate(robo1X + robotsizeX/2, robo1Y + robotsizey/2);
+
+
+    ctx.rotate((degrees * Math.PI / 180));
+
+
+    ctx.translate(-(robo1X + robotsizeX/2), -(robo1Y + robotsizey/2));
+
+    // draw the image
+    ctx.drawImage(robo1,robo1X,robo1Y,robotsizeX,robotsizey);
+    //Regain rotation
+    ctx.restore();
+
+    //ctx.drawImage(robo2,0,0 ,robotsizeX,robotsizey);
+
+    // optionally draw the draggable anchors
+    if (withAnchors) {
+        drawDragAnchor(imageX, imageY);
+        drawDragAnchor(imageRight, imageY);
+        drawDragAnchor(imageRight, imageBottom);
+        drawDragAnchor(imageX, imageBottom);
+    }
+
+    // optionally draw the connecting anchor lines
+    if (withBorders) {
+        ctx.beginPath();
+        ctx.moveTo(imageX, imageY);
+        ctx.lineTo(imageRight, imageY);
+        ctx.lineTo(imageRight, imageBottom);
+        ctx.lineTo(imageX, imageBottom);
+        ctx.closePath();
+        ctx.stroke();
+    }
+
+}
+
 
 // Animation.....................................................
 
-function animate(time) {
-   if ( ! paused) {
-      context.clearRect(0,0,canvas.width,canvas.height);
-      drawBackground();
-      context.drawImage(spritesheet, 0, 0);
+var degrees = 0;
+  function dance(){
+    //robo1Y += 1;
+    //robo1X += 1;
+    degrees += 1;
+    console.log(degrees);
 
-      sprite.paint(context);
-
-      if (time - lastAdvance > PAGEFLIP_INTERVAL) {
-         sprite.painter.advance();
-         lastAdvance = time;
-      }
-      window.requestNextAnimationFrame(animate);
-   }
-}
-
+    //robo1X += 1;
+    draw(false,false, degrees);
+  }
 // Initialization................................................
 
 
- spritesheet.src = 'Robot1.png';
-spritesheet.onload = function(e) {
-   context.drawImage(spritesheet, 0, 0);
+ robo1.src = 'Robot1.png';
+robo1.onload = function(e) {
+   //context.drawImage(robo1, robo1X, robo1Y, robotsizeX,robotsizey);
+   setTimeout(function() {
+       setInterval(function() {
+         dance();
+       },50)
+     }, 0);
+
 };
- spritesheet2.src = 'Robot2.png';
-spritesheet2.onload = function(e) {
-   context.drawImage(spritesheet2, 10, 0);
+ robo2.src = 'Robot2.png';
+robo2.onload = function(e) {
+   //context.drawImage(robo2, 10, 0,robotsizeX,robotsizey);
 };
- spritesheet3.src = 'Robot3.png';
-spritesheet3.onload = function(e) {
-   context.drawImage(spritesheet3, 20, 0);
+ robo3.src = 'Robot3.png';
+robo3.onload = function(e) {
+   //context.drawImage(robo3, 20, 0,robotsizeX,robotsizey);
 };
- spritesheet4.src = 'Robot4.png';
-spritesheet4.onload = function(e) {
-   context.drawImage(spritesheet4, 30, 0);
+ robo4.src = 'Robot4.png';
+robo4.onload = function(e) {
+   //context.drawImage(robo4, 30, 0,robotsizeX,robotsizey);
 };
- spritesheet5.src = 'Robot5.png';
-spritesheet5.onload = function(e) {
-   context.drawImage(spritesheet5, 40, 0);
+ robo5.src = 'Robot5.png';
+robo5.onload = function(e) {
+   //context.drawImage(robo5, 40, 0,robotsizeX,robotsizey);
 };
 
+var robo1X = 100;
+var robo1Y = 100;
 
 sprite.left = 200;
 sprite.top = 100;
