@@ -146,6 +146,23 @@
       ctx.restore();
 
 
+      //For the third robot
+      ctx.save();
+
+      ctx.translate(robo3X + robotsizeX/2, robo3Y + robotsizey/2);
+
+
+      ctx.rotate((robo3degrees * Math.PI / 180));
+
+
+      ctx.translate(-(robo3X + robotsizeX/2), -(robo3Y + robotsizey/2));
+
+      // draw the image
+      ctx.drawImage(robo3,robo3X,robo3Y,robotsizeX,robotsizey);
+      //Regain rotation
+      ctx.restore();
+
+
       // optionally draw the draggable anchors
       if (withAnchors) {
           drawDragAnchor(imageX, imageY);
@@ -301,6 +318,36 @@ var robo2stages = 0;
       }
     }
   }
+
+  var robo3stages = 0;
+    function dancerobo3(){
+      if(robo3stages == 0){
+        robo3degrees++;
+        console.log(robo2X);
+        if(robo3degrees > 90){
+          robo3stages++;
+        }
+      }
+      if(robo3stages == 1){
+        robo3X++;
+        if(robo3X > 1150){
+          robo3stages++;
+        }
+      }
+      if(robo3stages == 2){
+        robo3degrees--;
+        if(robo3degrees == -90){
+          robo3stages++;
+        }
+      }
+      if(robo3stages == 3){
+        robo3X--;
+        if(robo3X < 1000){
+          robo3stages = 0;
+        }
+      }
+    }
+
   // Initialization................................................
 
 
@@ -326,6 +373,11 @@ var robo2stages = 0;
    robo3.src = 'Robot3.png';
   robo3.onload = function(e) {
      //context.drawImage(robo3, 20, 0,robotsizeX,robotsizey);
+     setTimeout(function() {
+         setInterval(function() {
+           dancerobo3();
+         },50)
+       }, 0);
   };
    robo4.src = 'Robot4.png';
   robo4.onload = function(e) {
@@ -344,7 +396,7 @@ var robo2stages = 0;
   var robo2Y = 500;
   var robo2degrees = 0;
 
-  var robo3X = 100;
+  var robo3X = 1000;
   var robo3Y = 100;
   var robo3degrees = 0;
 
