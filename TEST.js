@@ -210,7 +210,7 @@ var robo1stages = 0;
     }
     if(robo1stages == 3){
       robo1degrees--;
-      if(robo1degrees <  1){
+      if(robo1degrees <=  0){
         robo1stages++;
 
       }
@@ -224,7 +224,7 @@ var robo1stages = 0;
     if(robo1stages == 5){
       robo1degrees--;
       //console.log(robo1degrees);
-      if(robo1degrees <  -90 ){
+      if(robo1degrees <=  -90 ){
         robo1stages++;
 
       }
@@ -265,7 +265,7 @@ var robo2stages = 0;
     }
     if(robo2stages == 2){
       robo2degrees--;
-      if(robo2degrees < 90){
+      if(robo2degrees <= 90){
         robo2stages++;
       }
     }
@@ -279,7 +279,7 @@ var robo2stages = 0;
     {
       robo2degrees--;
       console.log(robo2Y);
-      if(robo2degrees < 45){
+      if(robo2degrees <= 45){
         robo2stages++;
       }
     }
@@ -292,7 +292,7 @@ var robo2stages = 0;
     if(robo2stages == 6){
       robo2degrees++;
       console.log(robo2X);
-      if(robo2degrees > 90){
+      if(robo2degrees >= 90){
         robo2stages++;
       }
     }
@@ -321,7 +321,7 @@ var robo2stages = 0;
       if(robo3stages == 0){
         robo3degrees++;
         console.log(robo2X);
-        if(robo3degrees > 90){
+        if(robo3degrees >= 90){
           robo3stages++;
         }
       }
