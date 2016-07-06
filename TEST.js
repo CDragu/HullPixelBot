@@ -1,7 +1,4 @@
-  /*
-   * Copyright (C) 2012 David Geary. This code is from the book
-   * Core HTML5 Canvas, published by Prentice-Hall in 2012.
-   *
+/*
    * License:
    *
    * Permission is hereby granted, free of charge, to any person
@@ -39,17 +36,6 @@
       robo5 = new Image(),
       robotsizeX = 150,
       robotsizey = 300,
-      runnerCells = [
-        { left: 0,   top: 0, width: 47, height: 64 },
-        { left: 55,  top: 0, width: 44, height: 64 },
-        { left: 107, top: 0, width: 39, height: 64 },
-        { left: 150, top: 0, width: 46, height: 64 },
-        { left: 208, top: 0, width: 49, height: 64 },
-        { left: 265, top: 0, width: 46, height: 64 },
-        { left: 320, top: 0, width: 42, height: 64 },
-        { left: 380, top: 0, width: 35, height: 64 },
-        { left: 425, top: 0, width: 35, height: 64 },
-      ],
       sprite = new Sprite('runner', new SpriteSheetPainter(runnerCells)),
       interval,
       ammount,
@@ -196,7 +182,7 @@ var robo1stages = 0;
     if(robo1stages == 0){
       robo1Y++;
       //console.log(robo1Y);
-      if(robo1Y > 150)
+      if(robo1Y > 60)
       robo1stages++;
     }
     if(robo1stages == 1){
@@ -221,7 +207,7 @@ var robo1stages = 0;
     if(robo1stages == 4)
     {
       robo1Y--;
-      if(robo1Y < 50)
+      if(robo1Y < 20)
       robo1stages++;
     }
     if(robo1stages == 5){
@@ -389,7 +375,7 @@ var robo2stages = 0;
   };
 
   var robo1X = 100;
-  var robo1Y = 100;
+  var robo1Y = 20;
   var robo1degrees = 0;
 
   var robo2X = 500;
@@ -397,7 +383,7 @@ var robo2stages = 0;
   var robo2degrees = 0;
 
   var robo3X = 1000;
-  var robo3Y = 100;
+  var robo3Y = 20;
   var robo3degrees = 0;
 
   var robo4X = 100;
