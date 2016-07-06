@@ -193,7 +193,7 @@ var robo1stages = 0;
     if(robo1stages == 0){
       robo1Y++;
       //console.log(robo1Y);
-      if(robo1Y > 60)
+      if(robo1Y > 40)
       robo1stages++;
     }
     if(robo1stages == 1){
@@ -386,7 +386,7 @@ var robo2stages = 0;
   };
 
   var robo1X = 100;
-  var robo1Y = 20;
+  var robo1Y = 0;
   var robo1degrees = 0;
 
   var robo2X = 500;
@@ -394,7 +394,7 @@ var robo2stages = 0;
   var robo2degrees = 0;
 
   var robo3X = 1000;
-  var robo3Y = 20;
+  var robo3Y = 10;
   var robo3degrees = 0;
 
   var robo4X = 100;
